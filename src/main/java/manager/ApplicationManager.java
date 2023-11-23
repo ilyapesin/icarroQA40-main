@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 import java.util.WeakHashMap;
+import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
     WebDriver driver;
@@ -14,11 +15,11 @@ public class ApplicationManager {
 
     public void init() {
         driver = new ChromeDriver();
+        userHelper = new UserHelper(driver);
         driver.navigate().to("https://ilcarro.web.app/search");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        userHelper = new UserHelper(driver);
     }
 
     public UserHelper getUserHelper() {
